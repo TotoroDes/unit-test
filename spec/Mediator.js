@@ -33,7 +33,6 @@ describe('Mediator', () => {
                 mediator.subscribe();
                 expect(mediator.channels).toEqual({});
             });
-
         });
 
         describe('unsubscribe(event, [callback])', () => {
@@ -44,7 +43,6 @@ describe('Mediator', () => {
                 mediator.unsubscribe(testData.event, testData.callback);
 
                 expect(mediator.channels[testData.event]).toEqual([]);
-
             });
 
             it('deleting all event listeners', () => {
@@ -66,9 +64,7 @@ describe('Mediator', () => {
                 expect(() => {
                     mediator.unsubscribe();
                 }).not.toThrowError();
-
             });
-
         });
 
         describe('publish(event, [data])', () => {
@@ -76,8 +72,6 @@ describe('Mediator', () => {
                 const eventData = {
                     a: 10,
                 };
-
-
 
                 spyOn(testData, 'callback');
 
@@ -90,7 +84,6 @@ describe('Mediator', () => {
                 expect(testData.callback).toHaveBeenCalledTimes(10);
                 expect(testData.callback).toHaveBeenCalledWith(testData.event, eventData);
 
-
             });
 
             it('can be called in a chain', () => {
@@ -99,13 +92,6 @@ describe('Mediator', () => {
                 };
                 expect(mediator.publish(testData.event, eventData)).toBe(mediator);
             });
-
-
-
         });
-
-
     });
-
-
 });
