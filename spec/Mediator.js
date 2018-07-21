@@ -1,4 +1,8 @@
 describe('Mediator', () => {
+    it('creates new empty channels object', () => {
+        expect(window.Mediator).toBeDefined();
+    });
+
     let mediator;
     let testData;
 
