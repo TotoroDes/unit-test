@@ -24,6 +24,7 @@ describe('Mediator', () => {
             it('creates some event', () => {
                 mediator.subscribe(testData.event, testData.callback);
                 expect(mediator.channels[testData.event]).toEqual(jasmine.arrayContaining([testData.callback]));
+                expect(typeof testData.callback).toBe('function');
             });
             it('can be called in a chain', () => {
                 expect(mediator.subscribe(testData.event, testData.callback)).toBe(mediator);
@@ -90,6 +91,13 @@ describe('Mediator', () => {
                 expect(testData.callback).toHaveBeenCalledWith(testData.event, eventData);
 
 
+            });
+
+            it('can be called in a chain', () => {
+                const eventData = {
+                    a: 10,
+                };
+                expect(mediator.publish(testData.event, eventData)).toBe(mediator);
             });
 
 
